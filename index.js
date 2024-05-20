@@ -158,114 +158,12 @@ animation-iteration-count: 1;
 
 
 function compd(arr){
-    let score =-Infinity
-    let index=-1
-    let  moves=calculatePossibleMoves(arr)
-    for( let  i=0;i<moves.length;i++){
-        let  bd=makeMove(arr,moves[1],0)
-        let  tempscore=findscore(bd)
-        if(tempscore>=score){
-            score=tempscore
-            index =moves[i]
-        }
-    }
-    return index
+    let co=Math.floor(Math.random()*9)
+    if(arr[co]==1){
+        co=compd(arr)
 }
-
-function findscore(borad){
-    let score=-Infinity;
-// row
-let ck=0;
-for( let  i=0;i<3;i++){
-if(borad[i]==1){
-   ck++
+return co;
 }
-}
-if(ck>=score){
-    score=ck;
-}
-ck=0;
-for( let  i=3;i<6;i++){
-    if(borad[i]==1){
-        ck++
-    }
-    }
-    if(ck>=score){
-        score=ck;
-    }
-    ck=0;
-    for( let  i=6;i<9;i++){
-        if(borad[i]==1){
-            ck++
-        }
-        }
-        if(ck>=score){
-            score=ck;
-        }
-    //column
-    ck=0;
-for( let i=0;i<9;i=i+3){
-if(borad[i]==1){
-    ck++
-}
-}
-if(ck>=score){
-    score=ck;
-}
-ck=0;
-for( let  i=1;i<9;i=i+3){
-    if(borad[i]==1){
-        ck++
-    }
-    }
-    if(ck>=score){
-        score=ck;
-    }
-    ck=0;
-    for( let  i=2;i<9;i=i+3){
-        if(borad[i]==1){
-            ck++
-        }
-        }
-        if(ck>=score){
-            score=ck;
-        }
-        ck=0;
-//diagonals
- 
- if(arr[0]==1 || arr[4]==1 || arr[6]==1){
-    ck++
- }
- if(ck>=score){
-    score=ck;
-}
-ck=0;
- if(arr[2]==1 || arr[4]==1 || arr[6]==1){
-    ck++
- }
- if(ck>=score){
-    score=ck;
-}
-ck=0;
-return score
-}
-function calculatePossibleMoves(board) {
-    const possibleMoves = [];
-    for (let i = 0; i < board.length; i++) {
-        if (board[i] === -1) { // Assuming -1 represents an empty cell
-            possibleMoves.push(i);
-        }
-    }
-    return possibleMoves;}
-
-function makeMove(arr, moveIndex, player) {
-    const newBoard = arr.slice(); // Copy the board
-    newBoard[moveIndex] = player; // Make the move
-    return newBoard;
-}
-
-
-
 
 
 function chk(i){
@@ -344,7 +242,6 @@ Array.from(tab).forEach((it)=>{
     if(co<=4){
             mu.play();
         let cp=compd(arr);
-        console.log(cp)
         arr[cp]=0;
         let s=String(cp);
         s='b'+s;
